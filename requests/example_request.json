@@ -1,0 +1,20 @@
+{
+  "from": "Jane Smith (jane.smith@example.com)",
+  "copyright_holder_or_authorized": "Yes, I am the copyright holder.",
+  "is_revised": "No",
+  "content_source": "GitHub",
+  "ownership": "I am the owner of ExampleSoftware. You can find proof of my ownership at https://example.com/ownership-verification",
+  "work_description": "ExampleSoftware is a proprietary library for image processing. It is commercially available at https://example.com/products/examplesoftware",
+  "infringing_urls": [
+    "https://github.com/example-user/example-repo/tree/main/lib/examplesoftware",
+    "https://github.com/another-user/another-repo/blob/master/src/stolen-code.js"
+  ],
+  "access_control": "No",
+  "forks_information": "I have not identified any relevant forks at this time",
+  "open_source": "No",
+  "solution": "Repository can be made private",
+  "contact": "No",
+  "legal_name": "Jane Smith",
+  "contact_email": "jane.smith@example.com",
+  "phone": "+1-555-123-4567"
+}
