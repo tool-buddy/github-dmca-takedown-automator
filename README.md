@@ -30,9 +30,9 @@ A Python script for generating and sending DMCA takedown request emails to GitHu
 
 ## Usage
 
-1. Update `config/emailing_config.py` with your email settings.
+1. Update [emailing_config.py](./config/emailing_config.py) with your email settings.
 
-2. For each DMCA takedown request, create a JSON file containing the same data as the DMCA takedown notice form (https://support.github.com/contact/dmca-takedown). See `requests/example_request.json` for a template.
+2. For each DMCA takedown request, create a JSON file containing the same data as the DMCA takedown notice form (https://support.github.com/contact/dmca-takedown). See [example_request.json](./requests/example_request.json) for a template.
 
 3. Process one or multiple requests:
 ```
