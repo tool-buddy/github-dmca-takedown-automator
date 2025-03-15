@@ -5,37 +5,35 @@ This file contains the configuration needed to send DMCA takedown request emails
 as well as the email template structure for GitHub DMCA Takedown Requests.
 
 The configuration section contains SMTP server details (replace mock values with actual details).
-The template section contains the structure for DMCA emails with placeholders indicated by {placeholder}.
+The template section contains the structure for DMCA emails with placeholders.
 """
 
+from src.schemas import EmailConfig, SmtpConfig, AddressingConfig
 
-# SMTP Server Configuration
-SMTP_SERVER = "mail.example.com"
-SMTP_PORT = 465  # Common ports: 25 (SMTP), 465 (SMTPS), 587 (Submission)
-SMTP_USERNAME = "admin@example.com"
-SMTP_PASSWORD = "1234"
-# Connection Security (choose one based on your SMTP_PORT)
-# - For port 465: Set CONNECTION_SECURITY to "SSL"
-# - For port 587: Set CONNECTION_SECURITY to "STARTTLS"
-# - For port 25: Set CONNECTION_SECURITY to "NONE" (not recommended)
-CONNECTION_SECURITY = "SSL"  # Options: "SSL", "STARTTLS", "NONE"
-
-# Email Sender Configuration
-FROM_EMAIL = "admin@example.com"
-FROM_NAME = "Mr. Admin"
-REPLY_TO = "admin@example.com"
-
-# Optional CC recipient (set to None if not needed)
-CC_EMAIL = None
-
-# GitHub DMCA Submission
-GITHUB_DMCA_EMAIL = "copyright@github.com"
-
-# Email Template based on GitHub DMCA takedown request form
-# This template contains the structure for DMCA takedown request emails to be sent to GitHub.
-# Placeholders are indicated with curly braces {placeholder} and will be replaced with
-# actual values from the request config files.
-DMCA_EMAIL_TEMPLATE = """
+EMAIL_CONFIG = EmailConfig(
+    smtp=SmtpConfig(
+        server="mail.example.com",
+        port=465,  # Common ports: 25 (SMTP), 465 (SMTPS), 587 (Submission)
+        username="admin@example.com",
+        password="1234",
+        # Connection Security (choose one based on your SMTP_PORT)
+        # - For port 465: Set "SSL"
+        # - For port 587: Set "STARTTLS"
+        # - For port 25: Set "NONE" (not recommended)
+        connection_security="SSL",
+    ),
+    addressing=AddressingConfig(
+        from_email="admin@example.com",
+        from_name="Mr. Admin",
+        reply_to=None,
+        cc_email=None,
+        to_email="copyright@github.com",
+    ),
+    # Email Template based on GitHub DMCA takedown request form
+    # This template contains the structure for DMCA takedown request emails to be sent to GitHub.
+    # Placeholders are indicated with curly braces {placeholder} and will be replaced with
+    # actual values from the request config files.
+    email_template="""
 Subject: DMCA Takedown Notice from {from}
 
 Dear GitHub Team,
@@ -60,7 +58,7 @@ I, {legal_name}, am the copyright owner of content that is currently being infri
 * Please provide a detailed description of the original copyrighted work that has allegedly been infringed. If possible, include a URL to where it is posted online.
 {work_description}
 
-* What files should be taken down? Please provide URLs for each file, or if the entire repository, the repository’s URL.
+* What files should be taken down? Please provide URLs for each file, or if the entire repository, the repository's URL.
 {infringing_urls}
 
 * Do you claim to have any technological measures in place to control access to your copyrighted content? Please see our Complaints about Anti-Circumvention Technology if you are unsure.
@@ -75,7 +73,7 @@ I, {legal_name}, am the copyright owner of content that is currently being infri
 * What would be the best solution for the alleged infringement?
 {solution}
 
-* Do you have the alleged infringer’s contact information? If so, please provide it.
+* Do you have the alleged infringer's contact information? If so, please provide it.
 {contact}
 
 * I have a good faith belief that use of the copyrighted materials described above on the infringing web pages is not authorized by the copyright owner, or its agent, or the law.
@@ -93,4 +91,5 @@ Thank you for your attention to this matter.
 
 Sincerely,
 {legal_name}
-"""
+""",
+)
